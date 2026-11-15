@@ -339,6 +339,43 @@ main{perspective:1800px}
 #play .ic-play{display:none}#play:not(.playing) .ic-pause{display:none}#play:not(.playing) .ic-play{display:block}
 .ap-state{font-size:12px;min-width:66px}
 .pager.paused .pg-bar i{background:#9a978f}
+
+/* ===== v8: Zalo + Đội ngũ ===== */
+.z-lead{color:var(--tx2);line-height:1.65;margin:-8px 0 22px}
+.z-card{background:var(--wh);border:1px solid var(--ln);border-radius:12px;padding:20px;display:grid;gap:16px}
+.z-who{display:flex;gap:14px;align-items:center}
+.z-av{width:48px;height:48px;border-radius:12px;background:var(--gold);background-size:200% 100%;display:grid;place-items:center;font-weight:800;font-size:20px;color:var(--k)}
+.z-who b{display:block;font-size:17px}.z-who small{color:var(--mute);font-size:13px}
+.z-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ln);padding-top:14px}
+.z-row small{color:var(--mute);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.z-num{font-size:22px;letter-spacing:.02em}
+.z-open{justify-content:center;border-radius:12px}
+.z-grid{display:grid;grid-template-columns:180px 1fr;gap:16px;margin-top:16px}
+.z-qr{background:var(--wh);border:1px solid var(--ln);border-radius:12px;padding:14px;text-align:center}
+.z-qr .qr svg{width:100%;height:auto;display:block}
+.z-qr small,.z-msg>small{display:block;color:var(--mute);font-size:12px;margin-top:8px}
+.z-msg{background:var(--wh);border:1px solid var(--ln);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.z-msg>small{margin:0}
+.msg{background:#F3F1EA;border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.6;cursor:copy;transition:background .25s}
+.msg:hover{background:#FFF6CC}
+.z-copy{height:42px;border-radius:10px;justify-content:center}
+.z-copy.done{background:#E9F6EC;border-color:#BFE3C8;color:#1f6b35}
+.t-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{height:36px;padding:0 14px;border-radius:10px;border:1px solid var(--ln);background:rgba(255,255,255,.75);font-size:13px;color:var(--tx2);transition:background .25s,color .25s,border-color .25s}
+.chip:hover{border-color:#cfccc4}
+.chip.on{background:var(--k);color:var(--wh);border-color:var(--k)}
+.t-count{font-size:13px;color:var(--tx2)}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mate{position:relative;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border:1px solid var(--ln);border-radius:12px;padding:18px;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;transition:transform .35s var(--ease),box-shadow .35s,border-color .3s}
+.mate:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(0,0,0,.3);border-color:#cfccc4}
+.m-av{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#1F2230,#0E0F14);color:#FFD23F;display:grid;place-items:center;font-weight:700;font-size:15px;letter-spacing:.04em}
+.mate b{display:block;font-size:17px;letter-spacing:.04em}
+.mate small{color:var(--tx2);font-size:13px}
+.m-dept{grid-column:1/-1;justify-self:start;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#7a6400;background:#FFF3BF;border-radius:6px;padding:4px 8px}
+@media(max-width:960px){.tgrid{grid-template-columns:1fr 1fr}.z-grid{grid-template-columns:1fr}}
+.page[data-page=home] .strip .wrap{padding-right:470px}
+@media(max-width:960px){.page[data-page=home] .strip .wrap{padding-right:20px;padding-bottom:70px}}
 </style>
 </head>
 <body>
@@ -360,6 +397,7 @@ main{perspective:1800px}
     <button data-go="home">Trang chủ</button>
     <button data-go="jobs">Vị trí đang tuyển</button>
     <button data-go="why">Vì sao BigX</button>
+    <button data-go="team">Đội ngũ</button>
     <button data-go="process">Quy trình</button>
     <i class="ind" id="ind"></i>
   </div>
@@ -373,7 +411,7 @@ main{perspective:1800px}
     <div class="wrap home-main"><div class="hero-copy">
       <span class="tagline" data-st style="--i:0"><i></i>BigX Agency đang tuyển dụng</span>
       <h1 data-st style="--i:1">Cùng BigX làm những chiến dịch <mark>đáng nhớ.</mark></h1>
-      <p class="sub" data-st style="--i:2">Tuyển Fulltime và Cộng tác viên cho Content, Marketing, Ecom và Production. Xem JD, ứng tuyển trực tuyến trong 2 phút, không cần đăng nhập.</p>
+      <p class="sub" data-st style="--i:2">Tuyển Fulltime và Cộng tác viên cho Content, Marketing, Ecom và Production. Xem JD tại đây, nhắn Zalo HR để nhận form ứng tuyển.</p>
       <div class="hero-cta" data-st style="--i:3">
         <button class="btn btn-y" data-go="jobs">Xem vị trí đang tuyển <svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" fill="none" stroke-width="1.6"/></svg></button>
         <button class="btn btn-o" data-quick="ctv">Ứng tuyển Cộng tác viên</button>
@@ -383,7 +421,7 @@ main{perspective:1800px}
       <div data-st style="--i:4"><b id="sAll">–</b><small>Vị trí đang mở</small></div>
       <div data-st style="--i:5"><b id="sFt">–</b><small>Vị trí Fulltime</small></div>
       <div data-st style="--i:6"><b id="sCtv">–</b><small>Vị trí Cộng tác viên</small></div>
-      <div data-st style="--i:7"><b><em>Online</em></b><small>Ứng tuyển ngay trên web</small></div>
+      <div data-st style="--i:7"><b><em>Zalo</em></b><small>Nhắn HR để nhận form ứng tuyển</small></div>
     </div></div>
   </div>
 </section>
@@ -422,14 +460,24 @@ main{perspective:1800px}
   </div>
 </div></section>
 
+<!-- TEAM -->
+<section class="page" data-page="team" data-theme="light"><div class="wrap pg center">
+  <div class="sec-head" data-st style="--i:0">
+    <div><div class="lbl y">04 — Đội ngũ</div><h2>Những người bạn sẽ làm cùng</h2></div>
+    <p>Tên được viết tắt để bảo mật thông tin cá nhân. <b>Dữ liệu mẫu</b> — sẽ thay bằng danh sách thật.</p>
+  </div>
+  <div class="t-top" data-st style="--i:1"><div class="chips" id="tfilter"></div><span class="t-count"><b id="tcount">0</b> thành viên</span></div>
+  <div class="tgrid" id="tgrid" data-st style="--i:2"></div>
+</div></section>
+
 <!-- PROCESS -->
 <section class="page" data-page="process" data-theme="light"><div class="wrap pg center">
   <div class="sec-head" data-st style="--i:0">
-    <div><div class="lbl y">04 — Quy trình</div><h2>4 bước ứng tuyển</h2></div>
+    <div><div class="lbl y">05 — Quy trình</div><h2>4 bước ứng tuyển</h2></div>
     <p>Bạn sẽ được cập nhật ở từng bước qua điện thoại hoặc email.</p>
   </div>
   <div class="steps">
-    <div class="step" data-st style="--i:1"><span class="k">01</span><h4>Nộp hồ sơ</h4><p>Điền form và tải CV ngay trên trang.</p></div>
+    <div class="step" data-st style="--i:1"><span class="k">01</span><h4>Nhắn Zalo HR</h4><p>Chọn vị trí, nhắn Zalo cho HR để nhận form ứng tuyển.</p></div>
     <div class="step" data-st style="--i:2"><span class="k">02</span><h4>Sàng lọc</h4><p>HR xem hồ sơ và liên hệ bạn.</p></div>
     <div class="step" data-st style="--i:3"><span class="k">03</span><h4>Phỏng vấn</h4><p>Trao đổi cùng HR và quản lý trực tiếp.</p></div>
     <div class="step" data-st style="--i:4"><span class="k">04</span><h4>Nhận việc</h4><p>Offer, onboarding và bắt đầu dự án.</p></div>
@@ -444,7 +492,7 @@ main{perspective:1800px}
 
 <!-- pager -->
 <div class="pager" id="pager">
-  <span class="pg-no"><b id="pgNo">01</b> / 04</span>
+  <span class="pg-no"><b id="pgNo">01</b> / 05</span>
   <span class="pg-bar" title="Thời gian tới tab tiếp theo"><i id="pgBar"></i></span>
   <button id="play" class="playing" aria-label="Tạm dừng / chạy tự động"><svg class="ic-pause" width="12" height="12" viewBox="0 0 12 12"><path d="M3 1v10M9 1v10" stroke="currentColor" stroke-width="2"/></svg><svg class="ic-play" width="12" height="12" viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg></button>
   <span class="ap-state" id="apState">Tự chạy</span>
@@ -456,7 +504,7 @@ main{perspective:1800px}
 <div class="ov" id="ov"></div>
 <aside class="dw" id="dw">
   <div class="dw-top">
-    <div class="steps-mini" id="sm"><span data-s="jd"><i>1</i>Xem JD</span><b></b><span data-s="form"><i>2</i>Điền thông tin</span><b></b><span data-s="done"><i>3</i>Hoàn tất</span></div>
+    <div class="steps-mini" id="sm"><span data-s="jd"><i>1</i>Xem JD</span><b></b><span data-s="zalo"><i>2</i>Liên hệ Zalo</span></div>
     <button class="x" id="x" aria-label="Đóng"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg></button>
   </div>
   <div class="dw-body" id="body">
@@ -466,19 +514,30 @@ main{perspective:1800px}
       <div class="facts"><div><small>Phòng ban</small><span id="dDept"></span></div><div><small>Địa điểm</small><span id="dLoc"></span></div><div><small>Hình thức</small><span id="dMode"></span></div></div>
       <div class="jd" id="dJD"></div>
     </div>
-    <div class="view hidden" id="vForm">
-      <span class="pill" id="fPill"></span>
-      <h3 id="fTitle"></h3>
-      <form class="form" id="form" onsubmit="return false"></form>
-    </div>
-    <div class="view hidden" id="vDone">
-      <div class="done"><div class="ok"><svg width="34" height="34" viewBox="0 0 34 34"><path d="M17 8v12M17 25v2" stroke="#0B0B0B" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div>
-        <h3 style="margin:0 0 10px">Chưa nhận hồ sơ</h3><p id="doneMsg"></p></div>
+    <div class="view hidden" id="vZalo">
+      <span class="pill" id="zPill"></span>
+      <h3 id="zTitle"></h3>
+      <p class="z-lead">Nhắn Zalo cho HR BigX, bạn sẽ nhận <b>form ứng tuyển</b> và hướng dẫn các bước tiếp theo.</p>
+      <div class="z-card">
+        <div class="z-who">
+          <span class="z-av">B</span>
+          <div><b>Brian</b><small>Talent Acquisition · BigX</small></div>
+        </div>
+        <div class="z-row"><small>Zalo</small><b class="z-num">0796 831 698</b></div>
+        <a class="btn btn-y z-open" id="zOpen" href="https://zalo.me/0796831698" target="_blank" rel="noopener">Mở Zalo để nhắn tin <svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" fill="none" stroke-width="1.6"/></svg></a>
+      </div>
+      <div class="z-grid">
+        <div class="z-qr"><div class="qr"><svg width="27mm" height="27mm" version="1.1" viewBox="0 0 27 27" xmlns="http://www.w3.org/2000/svg"><path d="M1,1H2V2H1zM2,1H3V2H2zM3,1H4V2H3zM4,1H5V2H4zM5,1H6V2H5zM6,1H7V2H6zM7,1H8V2H7zM11,1H12V2H11zM12,1H13V2H12zM13,1H14V2H13zM14,1H15V2H14zM17,1H18V2H17zM19,1H20V2H19zM20,1H21V2H20zM21,1H22V2H21zM22,1H23V2H22zM23,1H24V2H23zM24,1H25V2H24zM25,1H26V2H25zM1,2H2V3H1zM7,2H8V3H7zM9,2H10V3H9zM12,2H13V3H12zM14,2H15V3H14zM15,2H16V3H15zM19,2H20V3H19zM25,2H26V3H25zM1,3H2V4H1zM3,3H4V4H3zM4,3H5V4H4zM5,3H6V4H5zM7,3H8V4H7zM9,3H10V4H9zM12,3H13V4H12zM13,3H14V4H13zM15,3H16V4H15zM16,3H17V4H16zM19,3H20V4H19zM21,3H22V4H21zM22,3H23V4H22zM23,3H24V4H23zM25,3H26V4H25zM1,4H2V5H1zM3,4H4V5H3zM4,4H5V5H4zM5,4H6V5H5zM7,4H8V5H7zM9,4H10V5H9zM11,4H12V5H11zM13,4H14V5H13zM14,4H15V5H14zM15,4H16V5H15zM19,4H20V5H19zM21,4H22V5H21zM22,4H23V5H22zM23,4H24V5H23zM25,4H26V5H25zM1,5H2V6H1zM3,5H4V6H3zM4,5H5V6H4zM5,5H6V6H5zM7,5H8V6H7zM10,5H11V6H10zM12,5H13V6H12zM13,5H14V6H13zM14,5H15V6H14zM15,5H16V6H15zM19,5H20V6H19zM21,5H22V6H21zM22,5H23V6H22zM23,5H24V6H23zM25,5H26V6H25zM1,6H2V7H1zM7,6H8V7H7zM10,6H11V7H10zM12,6H13V7H12zM13,6H14V7H13zM17,6H18V7H17zM19,6H20V7H19zM25,6H26V7H25zM1,7H2V8H1zM2,7H3V8H2zM3,7H4V8H3zM4,7H5V8H4zM5,7H6V8H5zM6,7H7V8H6zM7,7H8V8H7zM9,7H10V8H9zM11,7H12V8H11zM13,7H14V8H13zM15,7H16V8H15zM17,7H18V8H17zM19,7H20V8H19zM20,7H21V8H20zM21,7H22V8H21zM22,7H23V8H22zM23,7H24V8H23zM24,7H25V8H24zM25,7H26V8H25zM9,8H10V9H9zM10,8H11V9H10zM12,8H13V9H12zM13,8H14V9H13zM15,8H16V9H15zM16,8H17V9H16zM17,8H18V9H17zM1,9H2V10H1zM7,9H8V10H7zM9,9H10V10H9zM12,9H13V10H12zM14,9H15V10H14zM18,9H19V10H18zM19,9H20V10H19zM22,9H23V10H22zM23,9H24V10H23zM24,9H25V10H24zM1,10H2V11H1zM2,10H3V11H2zM3,10H4V11H3zM5,10H6V11H5zM8,10H9V11H8zM9,10H10V11H9zM10,10H11V11H10zM11,10H12V11H11zM13,10H14V11H13zM16,10H17V11H16zM17,10H18V11H17zM20,10H21V11H20zM21,10H22V11H21zM22,10H23V11H22zM23,10H24V11H23zM24,10H25V11H24zM3,11H4V12H3zM6,11H7V12H6zM7,11H8V12H7zM14,11H15V12H14zM15,11H16V12H15zM16,11H17V12H16zM17,11H18V12H17zM19,11H20V12H19zM21,11H22V12H21zM22,11H23V12H22zM24,11H25V12H24zM25,11H26V12H25zM1,12H2V13H1zM3,12H4V13H3zM6,12H7V13H6zM9,12H10V13H9zM10,12H11V13H10zM11,12H12V13H11zM12,12H13V13H12zM13,12H14V13H13zM17,12H18V13H17zM18,12H19V13H18zM19,12H20V13H19zM21,12H22V13H21zM22,12H23V13H22zM25,12H26V13H25zM1,13H2V14H1zM7,13H8V14H7zM8,13H9V14H8zM9,13H10V14H9zM12,13H13V14H12zM13,13H14V14H13zM15,13H16V14H15zM16,13H17V14H16zM17,13H18V14H17zM19,13H20V14H19zM25,13H26V14H25zM1,14H2V15H1zM3,14H4V15H3zM4,14H5V15H4zM8,14H9V15H8zM9,14H10V15H9zM10,14H11V15H10zM11,14H12V15H11zM13,14H14V15H13zM14,14H15V15H14zM15,14H16V15H15zM16,14H17V15H16zM17,14H18V15H17zM20,14H21V15H20zM24,14H25V15H24zM1,15H2V16H1zM3,15H4V16H3zM4,15H5V16H4zM5,15H6V16H5zM6,15H7V16H6zM7,15H8V16H7zM8,15H9V16H8zM13,15H14V16H13zM16,15H17V16H16zM17,15H18V16H17zM18,15H19V16H18zM20,15H21V16H20zM21,15H22V16H21zM22,15H23V16H22zM24,15H25V16H24zM25,15H26V16H25zM1,16H2V17H1zM4,16H5V17H4zM6,16H7V17H6zM8,16H9V17H8zM9,16H10V17H9zM11,16H12V17H11zM13,16H14V17H13zM15,16H16V17H15zM19,16H20V17H19zM20,16H21V17H20zM22,16H23V17H22zM23,16H24V17H23zM25,16H26V17H25zM1,17H2V18H1zM6,17H7V18H6zM7,17H8V18H7zM8,17H9V18H8zM12,17H13V18H12zM14,17H15V18H14zM17,17H18V18H17zM18,17H19V18H18zM19,17H20V18H19zM20,17H21V18H20zM21,17H22V18H21zM23,17H24V18H23zM9,18H10V19H9zM12,18H13V19H12zM13,18H14V19H13zM15,18H16V19H15zM17,18H18V19H17zM21,18H22V19H21zM1,19H2V20H1zM2,19H3V20H2zM3,19H4V20H3zM4,19H5V20H4zM5,19H6V20H5zM6,19H7V20H6zM7,19H8V20H7zM12,19H13V20H12zM15,19H16V20H15zM17,19H18V20H17zM19,19H20V20H19zM21,19H22V20H21zM25,19H26V20H25zM1,20H2V21H1zM7,20H8V21H7zM11,20H12V21H11zM13,20H14V21H13zM15,20H16V21H15zM16,20H17V21H16zM17,20H18V21H17zM21,20H22V21H21zM1,21H2V22H1zM3,21H4V22H3zM4,21H5V22H4zM5,21H6V22H5zM7,21H8V22H7zM11,21H12V22H11zM12,21H13V22H12zM14,21H15V22H14zM16,21H17V22H16zM17,21H18V22H17zM18,21H19V22H18zM19,21H20V22H19zM20,21H21V22H20zM21,21H22V22H21zM23,21H24V22H23zM1,22H2V23H1zM3,22H4V23H3zM4,22H5V23H4zM5,22H6V23H5zM7,22H8V23H7zM10,22H11V23H10zM11,22H12V23H11zM12,22H13V23H12zM13,22H14V23H13zM18,22H19V23H18zM19,22H20V23H19zM24,22H25V23H24zM25,22H26V23H25zM1,23H2V24H1zM3,23H4V24H3zM4,23H5V24H4zM5,23H6V24H5zM7,23H8V24H7zM11,23H12V24H11zM13,23H14V24H13zM17,23H18V24H17zM22,23H23V24H22zM23,23H24V24H23zM25,23H26V24H25zM1,24H2V25H1zM7,24H8V25H7zM10,24H11V25H10zM12,24H13V25H12zM15,24H16V25H15zM17,24H18V25H17zM18,24H19V25H18zM20,24H21V25H20zM21,24H22V25H21zM25,24H26V25H25zM1,25H2V26H1zM2,25H3V26H2zM3,25H4V26H3zM4,25H5V26H4zM5,25H6V26H5zM6,25H7V26H6zM7,25H8V26H7zM9,25H10V26H9zM11,25H12V26H11zM12,25H13V26H12zM15,25H16V26H15zM16,25H17V26H16zM17,25H18V26H17zM22,25H23V26H22zM25,25H26V26H25z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg></div><small>Quét bằng Zalo trên điện thoại</small></div>
+        <div class="z-msg">
+          <small>Tin nhắn gợi ý — bấm để copy rồi dán vào Zalo</small>
+          <div class="msg" id="zMsg"></div>
+          <button class="btn btn-ghost z-copy" id="zCopy">Copy tin nhắn</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="dw-foot"><button class="btn btn-ghost" id="back">← Quay lại</button><button class="btn btn-y" id="main">Ứng tuyển vị trí này</button></div>
+  <div class="dw-foot"><button class="btn btn-ghost" id="back">← Quay lại JD</button><button class="btn btn-y" id="main">Ứng tuyển vị trí này</button></div>
 </aside>
-
 
 <script>
 /* ===== DỮ LIỆU MẪU — thay bằng file JD thật ===== */
@@ -527,34 +586,41 @@ q.oninput=()=>{st.q=q.value.toLowerCase().trim();apply()};
 document.querySelector('[data-quick=ctv]').onclick=()=>{st.type='ctv';build();apply();goTab('jobs')};
 build();apply();
 
-/* drawer */
+/* drawer: JD -> Zalo */
 let cur,stage;
-function go(s){stage=s;[['jd',vJD],['form',vForm],['done',vDone]].forEach(([k,v])=>v.classList.toggle('hidden',k!==s));body.scrollTop=0;
-  sm.querySelectorAll('span').forEach(x=>x.classList.toggle('on',['jd','form','done'].indexOf(x.dataset.s)<=['jd','form','done'].indexOf(s)));
-  back.style.visibility=s==='form'?'visible':'hidden';main.style.display=s==='done'?'none':'';
-  main.innerHTML=s==='jd'?'Ứng tuyển vị trí này '+arrow:'Gửi hồ sơ '+arrow}
-function openJob(i){cur=JOBS[i];[dPill,fPill].forEach(p=>{p.className='pill '+cur.type;p.textContent=TYPE[cur.type]});
+const ZALO='https://zalo.me/0796831698';
+function go(s){stage=s;[['jd',vJD],['zalo',vZalo]].forEach(([k,v])=>v.classList.toggle('hidden',k!==s));body.scrollTop=0;
+  sm.querySelectorAll('span').forEach(x=>x.classList.toggle('on',['jd','zalo'].indexOf(x.dataset.s)<=['jd','zalo'].indexOf(s)));
+  back.style.visibility=s==='zalo'?'visible':'hidden';main.style.display=s==='zalo'?'none':'';
+  main.innerHTML='Ứng tuyển vị trí này '+arrow}
+function openJob(i){cur=JOBS[i];[dPill,zPill].forEach(p=>{p.className='pill '+cur.type;p.textContent=TYPE[cur.type]});
   dTitle.textContent=cur.t;dDept.textContent=cur.dept;dLoc.textContent=cur.loc;dMode.textContent=cur.mode;
   dJD.innerHTML=Object.entries(JD).map(([h,a])=>`<section><h5>${h}</h5><ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul></section>`).join('');
+  zTitle.textContent='Ứng tuyển: '+cur.t;
+  zMsg.textContent=`Chào anh Brian, em muốn ứng tuyển vị trí ${cur.t} (${TYPE[cur.type]}) tại BigX. Anh gửi em form ứng tuyển với ạ.`;
+  zCopy.textContent='Copy tin nhắn';
   go('jd');dw.classList.add('open');ov.classList.add('open');document.body.style.overflow='hidden'}
 function close(){dw.classList.remove('open');ov.classList.remove('open');document.body.style.overflow=''}
 ov.onclick=close;x.onclick=close;addEventListener('keydown',e=>e.key==='Escape'&&close());
-function buildForm(){const ft=cur.type==='ft';fTitle.textContent='Ứng tuyển: '+cur.t;
-  const f=(l,req,full,type='text')=>`<div class="fld ${full?'full':''}"><label>${l}${req?' <em>*</em>':''}</label><input type="${type}"></div>`;
-  form.innerHTML=ft?
-    f('Họ và tên',1,1)+f('Số điện thoại',1,0,'tel')+f('Email',1,0,'email')+f('Link Portfolio / LinkedIn',0,1,'url')+
-    `<div class="drop" id="drop"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 14V3M5 8l5-5 5 5M3 17h14" stroke="#0B0B0B" stroke-width="1.7" fill="none"/></svg></span><div><b id="dropT">Tải CV lên <span style="color:#b33">*</span></b><small>Kéo thả hoặc bấm để chọn · PDF, DOCX · tối đa 5MB</small></div><input type="file" id="file" hidden></div>`+
-    `<div class="fld full"><label>Lời nhắn cho BigX (không bắt buộc)</label><textarea></textarea></div>`+
-    `<div class="route"><i></i>Hồ sơ → Google Sheet “Ứng viên Fulltime” · CV → thư mục Drive (mô phỏng)</div>`
-   :f('Họ và tên',1,1)+f('Số điện thoại / Zalo',1,0,'tel')+f('Email',0,0,'email')+f('Link kênh TikTok',1,1,'url')+f('Số follower',0)+f('Ngách nội dung',0)+f('Khu vực',0,1)+
-    `<div class="route"><i></i>Hồ sơ → file riêng “Ứng viên CTV” (mô phỏng)</div>`;
-  const d=document.getElementById('drop');if(d){const fi=document.getElementById('file');d.onclick=()=>fi.click();
-    const setN=n=>document.getElementById('dropT').textContent='✓ '+n;fi.onchange=()=>fi.files[0]&&setN(fi.files[0].name);
-    d.ondragover=e=>{e.preventDefault();d.classList.add('drag')};d.ondragleave=()=>d.classList.remove('drag');
-    d.ondrop=e=>{e.preventDefault();d.classList.remove('drag');e.dataTransfer.files[0]&&setN(e.dataTransfer.files[0].name)}}}
-main.onclick=()=>{if(stage==='jd'){buildForm();go('form')}else{go('done');
-  doneMsg.innerHTML='Trang đang trong giai đoạn <b>chạy thử</b> nên <b>chưa nhận hồ sơ</b>. Thông tin bạn vừa nhập không được gửi đi. Vui lòng quay lại sau khi BigX mở nhận hồ sơ chính thức.'}};
+main.onclick=()=>go('zalo');
 back.onclick=()=>go('jd');
+zCopy.onclick=async()=>{const t=zMsg.textContent;try{await navigator.clipboard.writeText(t)}catch(e){const r=document.createRange();r.selectNodeContents(zMsg);const s=getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy')}
+  zCopy.textContent='✓ Đã copy — mở Zalo và dán vào';zCopy.classList.add('done')};
+zMsg.onclick=()=>zCopy.click();
+
+/* ===== ĐỘI NGŨ — DỮ LIỆU MẪU: tên viết tắt cả họ tên ===== */
+const TEAM=[
+ {n:'N.V.A',r:'Leader',d:'Ecom'},{n:'T.T.B',r:'Content Lead',d:'Content'},{n:'L.M.C',r:'Performance Marketing',d:'Marketing'},
+ {n:'P.H.D',r:'Account Executive',d:'Client Service'},{n:'V.T.E',r:'Video Editor',d:'Production'},{n:'Đ.Q.G',r:'Content Creator',d:'Content'},
+ {n:'H.N.K',r:'Livestream Host',d:'Ecom'},{n:'B.T.L',r:'Designer',d:'Production'}];
+(function team(){const g=document.getElementById('tgrid'),f=document.getElementById('tfilter');if(!g)return;
+  const depts=['Tất cả',...new Set(TEAM.map(t=>t.d))];let sel='Tất cả';
+  const draw=()=>{g.innerHTML='';TEAM.filter(t=>sel==='Tất cả'||t.d===sel).forEach((t,i)=>{const c=document.createElement('div');c.className='mate';
+    c.innerHTML=`<span class="m-av">${t.n.replace(/\./g,'')}</span><div><b>${t.n}</b><small>${t.r}</small></div><span class="m-dept">${t.d}</span>`;
+    c.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:450,delay:i*45,easing:'cubic-bezier(.22,1,.36,1)',fill:'backwards'});g.appendChild(c)});
+    tcount.textContent=g.children.length};
+  depts.forEach(d=>{const b=document.createElement('button');b.className='chip'+(d===sel?' on':'');b.textContent=d;b.onclick=()=>{sel=d;f.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));draw()};f.appendChild(b)});
+  draw()})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
 <script>/* ===== BigX 3D logo hero (Three.js r128) ===== */
@@ -647,8 +713,9 @@ const SC={ // per-tab scene targets (desktop)
   home:{x:2.3,y:.15,s:.58,ex:0,spin:0,op:1,px:2.3,pe:0},
   jobs:{x:3.5,y:0,s:0,ex:0,spin:2,op:1,px:3,pe:.7},
   why:{x:0,y:0,s:0,ex:0,spin:4,op:1,px:0,pe:.15},
+  team:{x:0,y:0,s:0,ex:0,spin:5,op:1,px:2,pe:.6},
   process:{x:-3.5,y:0,s:0,ex:0,spin:6,op:1,px:-3,pe:.7}};
-const SCm={home:{x:0,y:1.6,s:.42},jobs:{x:0,y:1,s:0},why:{x:0,y:1,s:0},process:{x:0,y:1,s:0}};
+const SCm={home:{x:0,y:1.6,s:.42},jobs:{x:0,y:1,s:0},why:{x:0,y:1,s:0},process:{x:0,y:1,s:0},team:{x:0,y:1,s:0}};
 const cur={x:2.3,y:.15,s:.58,ex:0,spin:0,op:1,px:2.3,pe:0};let tgt=SC.home;let kick=0;
 window.__set3D=(name)=>{const base=SC[name]||SC.home;tgt=Object.assign({},base);
   if(W()<=900)Object.assign(tgt,SCm[name]||{},{px:(SCm[name]||{}).x||0});kick=1};
@@ -677,10 +744,10 @@ const clock=new THREE.Clock();let lastT=0;
 })();
 </script>
 <script>/* ===== tab router: per-tab transitions + autoplay ===== */
-const ORDER=['home','jobs','why','process'];
-const NAMES={home:'Trang chủ',jobs:'Vị trí đang tuyển',why:'Vì sao BigX',process:'Quy trình'};
+const ORDER=['home','jobs','why','team','process'];
+const NAMES={home:'Trang chủ',jobs:'Vị trí đang tuyển',why:'Vì sao BigX',team:'Đội ngũ',process:'Quy trình'};
 /* Kiểu chuyển cảnh theo tab ĐÍCH */
-const STYLE={home:'circle',jobs:'wipe',why:'flip',process:'blinds'};
+const STYLE={home:'circle',jobs:'wipe',why:'flip',team:'zoom',process:'blinds'};
 const pages=Object.fromEntries([...document.querySelectorAll('.page')].map(p=>[p.dataset.page,p]));
 let curPage=null,busy=false;
 const tabBtns=[...document.querySelectorAll('#tabs button')];
@@ -727,7 +794,13 @@ async function tBlinds(from,to){const g=coverColor(to)==='gold';blinds.classList
   await Promise.all(bars.map((b,i)=>run(b,[{transform:'scaleY(0)',transformOrigin:'50% 100%'},{transform:'scaleY(1)',transformOrigin:'50% 100%'}],{duration:480,delay:i*55,easing:EZ})));
   label(to,true,g);drop(from);theme(to);await wait(320);label(to,false,g);enter(to);
   await Promise.all(bars.map((b,i)=>run(b,[{transform:'scaleY(1)',transformOrigin:'50% 0%'},{transform:'scaleY(0)',transformOrigin:'50% 0%'}],{duration:520,delay:i*55,easing:EZ})))}
-const TRANS={wipe:tWipe,circle:tCircle,flip:tFlip,blinds:tBlinds};
+/* --- 5. ZOOM: trang cũ lùi sâu vào trong, trang mới phóng ra --- */
+async function tZoom(from,to){const o=pages[from],n=pages[to];leave(from);
+  await run(o,[{transform:'scale(1)',opacity:1,filter:'blur(0px)'},{transform:'scale(.82)',opacity:0,filter:'blur(6px)'}],{duration:480,easing:'cubic-bezier(.55,0,.75,.2)'});
+  drop(from);theme(to);enter(to);
+  await run(n,[{transform:'scale(1.12)',opacity:0,filter:'blur(8px)'},{transform:'scale(1)',opacity:1,filter:'blur(0px)'}],{duration:700,easing:'cubic-bezier(.2,.8,.25,1)'});
+  n.getAnimations().forEach(a=>a.cancel())}
+const TRANS={wipe:tWipe,circle:tCircle,flip:tFlip,blinds:tBlinds,zoom:tZoom};
 
 async function goTab(name,instant){
   if(!pages[name]||name===curPage||busy)return;
