@@ -376,6 +376,8 @@ main{perspective:1800px}
 @media(max-width:960px){.tgrid{grid-template-columns:1fr 1fr}.z-grid{grid-template-columns:1fr}}
 .page[data-page=home] .strip .wrap{padding-right:470px}
 @media(max-width:960px){.page[data-page=home] .strip .wrap{padding-right:20px;padding-bottom:70px}}
+
+.curtain,.blinds,.tlabel{visibility:hidden}
 </style>
 </head>
 <body>
@@ -808,7 +810,12 @@ async function goTab(name,instant){
   history.replaceState(null,'','#'+name);moveInd(name);window.__set3D&&window.__set3D(name);
   curPage=name;
   if(instant||!from){theme(name);enter(name);return}
-  busy=true;try{await TRANS[STYLE[name]](from,name,dir)}finally{busy=false;ap.reset()}}
+  busy=true;[curtain,blinds,tlabel].forEach(e=>e.style.visibility='visible');
+  try{await TRANS[STYLE[name]](from,name,dir)}
+  finally{ // tắt hẳn các lớp che sau khi chuyển xong (tránh Chrome giữ lại lớp màn)
+    [curtain,tlabel,...blinds.children].forEach(e=>e.getAnimations().forEach(a=>a.cancel()));
+    tlabel.classList.remove('show');[curtain,blinds,tlabel].forEach(e=>e.style.visibility='hidden');
+    busy=false;ap.reset()}}
 
 /* ===== AUTOPLAY: tự chuyển tab khi không ai thao tác ===== */
 const ap={DUR:7000,IDLE:5000,playing:true,t:0,last:performance.now(),idleUntil:0,
