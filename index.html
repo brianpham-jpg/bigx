@@ -1000,13 +1000,13 @@ function label(name,on,darkTxt){tNo.textContent=String(ORDER.indexOf(name)+1).pa
 const coverColor=name=>pages[name].dataset.theme==='dark'?'gold':'dark'; // màn che trái màu với trang đích
 
 /* --- 1. WIPE: màn quét ngang (theo chiều tab) --- */
-async function tWipe(from,to,dir){const g=false; // v12: bỏ màn vàngcurtain.classList.toggle('dark',!g);
+async function tWipe(from,to,dir){const g=false;/* v12: bỏ màn vàng */curtain.classList.toggle('dark',!g);
   const A=dir>0?['inset(0 0 0 100%)','inset(0 0 0 0)','inset(0 100% 0 0)']:['inset(0 100% 0 0)','inset(0 0 0 0)','inset(0 0 0 100%)'];
   leave(from);await run(curtain,[{clipPath:A[0]},{clipPath:A[1]}],{duration:520,easing:EZ});
   label(to,true,g);drop(from);theme(to);await wait(380);label(to,false,g);enter(to);
   await run(curtain,[{clipPath:A[1]},{clipPath:A[2]}],{duration:620,easing:EZ})}
 /* --- 2. CIRCLE: vòng tròn nở ra từ vị trí logo rồi thu lại vào logo --- */
-async function tCircle(from,to){const g=false; // v12: bỏ màn vàngcurtain.classList.toggle('dark',!g);
+async function tCircle(from,to){const g=false;/* v12: bỏ màn vàng */curtain.classList.toggle('dark',!g);
   const at=innerWidth>960?'69% 50%':'50% 30%';
   leave(from);await run(curtain,[{clipPath:`circle(0% at ${at})`},{clipPath:`circle(150% at ${at})`}],{duration:700,easing:'cubic-bezier(.65,0,.35,1)'});
   label(to,true,g);drop(from);theme(to);await wait(320);label(to,false,g);enter(to);
@@ -1019,7 +1019,7 @@ async function tFlip(from,to,dir){const o=pages[from],n=pages[to];const s=dir>0?
   await run(n,[{transform:`rotateY(${75*s}deg) scale(.86)`,opacity:0},{transform:'rotateY(0deg) scale(1)',opacity:1}],{duration:760,easing:'cubic-bezier(.2,.8,.25,1)'});
   n.getAnimations().forEach(a=>a.cancel())}
 /* --- 4. BLINDS: 6 thanh dọc dựng lên so le rồi rút đi --- */
-async function tBlinds(from,to){const g=false; // v12: bỏ màn vàngblinds.classList.toggle('dark',!g);const bars=[...blinds.children];
+async function tBlinds(from,to){const g=false;/* v12: bỏ màn vàng */blinds.classList.toggle('dark',!g);const bars=[...blinds.children];
   leave(from);
   await Promise.all(bars.map((b,i)=>run(b,[{transform:'scaleY(0)',transformOrigin:'50% 100%'},{transform:'scaleY(1)',transformOrigin:'50% 100%'}],{duration:480,delay:i*55,easing:EZ})));
   label(to,true,g);drop(from);theme(to);await wait(320);label(to,false,g);enter(to);
