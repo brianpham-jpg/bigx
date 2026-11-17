@@ -645,6 +645,16 @@ body.sc-why .sc-scrim{background:linear-gradient(90deg,rgba(20,21,27,.9) 0%,rgba
 body.sc-home .sc-logo{opacity:.55}body.sc-home .sc-glow{opacity:.6}
 body.sc-jobs .sc-logo,body.sc-why .sc-logo{opacity:.3}body.sc-jobs .sc-glow,body.sc-why .sc-glow{opacity:.3}
 .sc-scrim{background:linear-gradient(90deg,rgba(20,21,27,.9) 0%,rgba(20,21,27,.72) 50%,rgba(20,21,27,.3) 75%,rgba(20,21,27,.4) 100%),linear-gradient(0deg,rgba(20,21,27,.75),transparent 35%)}
+/* ===== v21 · tối ưu hiệu năng ===== */
+/* bỏ làm mờ nền (backdrop-filter) trên các khối nằm trên cảnh động — thay bằng nền đặc hơn */
+.tile,.tm-room,.jf-kv,.jf-apply,.tagline,.j-filters .chip,.f-face,.mate,.ctrl button{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.tm-room{background:linear-gradient(160deg,rgba(44,46,58,.82),rgba(30,32,40,.78))!important}
+.tm-panel{backdrop-filter:none!important;background:rgba(26,27,34,.92)!important}
+.dw-top,.dw-foot{backdrop-filter:none!important}
+.ov{backdrop-filter:none!important}
+.sc-l.sc-fg,.sc-dust{will-change:auto}
+.sc-cam{will-change:transform;backface-visibility:hidden}
+@media (prefers-reduced-motion:reduce){.sc-cam{transition:none}.sc-dust{display:none}}
 /* ===== v14 · bảng màu 2 + 1: than (#262936) + cát (#E9E1CF), vàng logo chỉ cho nút & logo ===== */
 :root{--sand:#E9E1CF;--sand2:#B9B2A2}
 /* chữ nhấn: vàng -> cát */
@@ -967,7 +977,7 @@ const host=document.getElementById('hero3d');
 if(!window.THREE||!host)return;
 const W=()=>host.clientWidth,H=()=>host.clientHeight;
 const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(W(),H());
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(W(),H());
 renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.NoToneMapping;
 host.appendChild(renderer.domElement);
 const scene=new THREE.Scene();
@@ -1083,7 +1093,7 @@ const clock=new THREE.Clock();let lastT=0;
 </script>
 <script>/* ===== Tab Vị trí: logo BigX rơi + kim tuyến vàng + bụi vàng (chỉ chạy khi mở tab Vị trí) ===== */
 (function(){if(!window.THREE)return;const cv=document.getElementById('jobsfx');
-const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.25));
 const scene=new THREE.Scene();const cam=new THREE.PerspectiveCamera(50,1,.1,200);cam.position.set(0,0,14);
 function rs(){renderer.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}addEventListener('resize',rs);rs();
 const PR=renderer.getPixelRatio();
@@ -1282,17 +1292,36 @@ requestAnimationFrame(frame)})();
 <script>/* ===== v19 · camera đi dọc hành lang tới phòng ban theo tab ===== */
 (function(){const cam=document.getElementById('scCam'),tag=document.getElementById('scTag');if(!cam)return;
 const SHOTS={home:{s:1.08,x:50,y:45,t:''},jobs:{s:1.75,x:24,y:44,t:'Phòng Livestream · Booking KOC'},why:{s:1.65,x:80,y:40,t:'Phòng Performance · Kinh doanh'},
-  team:{s:1.9,x:64,y:50,t:'Khu sinh hoạt chung'},process:{s:2.3,x:50,y:42,t:'BigX'}};
+  team:{s:1.35,x:50,y:48,t:'Toàn cảnh văn phòng'},process:{s:2.3,x:50,y:42,t:'BigX'}};
 function go(n){const k=SHOTS[n]||SHOTS.home;cam.style.transformOrigin=`${k.x}% ${k.y}%`;cam.style.transform=`scale(${k.s})`;
   document.body.classList.remove('sc-home','sc-jobs','sc-why','sc-team','sc-process');document.body.classList.add('sc-'+n);
   tag.classList.remove('on');if(k.t){tag.textContent=k.t;setTimeout(()=>tag.classList.add('on'),1700)}}
+window.__scShot=(k,t)=>{if(!k){go('team');return}cam.style.transformOrigin=`${k.x}% ${k.y}%`;cam.style.transform=`scale(${k.s})`;tag.classList.remove('on');if(t){tag.textContent=t;setTimeout(()=>tag.classList.add('on'),1700)}};
 const prev=window.__set3D;window.__set3D=n=>{prev&&prev(n);go(n)};
 const cur=(document.querySelector('.page.active')||{}).dataset;go(cur&&cur.page||'home');
 const L=[...document.querySelectorAll('.sc-l')];let mx=0,my=0,tx=0,ty=0;
 addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-(function loop(){requestAnimationFrame(loop);tx+=(mx-tx)*.06;ty+=(my-ty)*.06;L.forEach(l=>{const k=+l.dataset.k;l.style.transform=`translate3d(${-tx*k*18}px,${-ty*k*10}px,0) scale(${1+(k-1)*.02})`})})();
+(function loop(){requestAnimationFrame(loop);if(Math.abs(mx-tx)<.0005&&Math.abs(my-ty)<.0005)return;tx+=(mx-tx)*.06;ty+=(my-ty)*.06;L.forEach(l=>{const k=+l.dataset.k;l.style.transform=`translate3d(${-tx*k*18}px,${-ty*k*10}px,0) scale(${1+(k-1)*.02})`})})();
 })();
-try{Object.keys(STYLE).forEach(k=>STYLE[k]='zoom')}catch(e){}
+
+</script>
+<script>/* ===== v21 · tối ưu hiệu năng ===== */
+(function(){
+/* 1. Chuyển tab: trượt + mờ dần, KHÔNG blur cả trang */
+if(typeof TRANS!=='undefined'){
+  TRANS.fade=async(from,to)=>{const o=pages[from],n=pages[to];leave(from);
+    await run(o,[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-18px)'}],{duration:360,easing:'cubic-bezier(.55,0,.75,.2)'});
+    drop(from);theme(to);enter(to);
+    await run(n,[{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'none'}],{duration:560,easing:'cubic-bezier(.2,.8,.25,1)'});
+    n.getAnimations().forEach(a=>a.cancel())};
+  Object.keys(STYLE).forEach(k=>STYLE[k]='fade')}
+/* 2. Giải mã sẵn ảnh khi trình duyệt rảnh — tránh khựng khi vào tab có ảnh */
+const pre=()=>document.querySelectorAll('img').forEach(im=>{im.decoding='async';if(im.decode)im.decode().catch(()=>{})});
+(window.requestIdleCallback||setTimeout)(pre,{timeout:2500});
+/* 3. Lớp dust chỉ chạy khi tab có cảnh văn phòng đang hiện */
+const dust=document.querySelector('.sc-dust');
+const sync=()=>{if(dust)dust.style.animationPlayState=document.hidden?'paused':'running'};document.addEventListener('visibilitychange',sync);
+})();
 </script>
 </body>
 </html>
